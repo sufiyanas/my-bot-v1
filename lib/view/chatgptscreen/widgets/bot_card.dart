@@ -29,17 +29,20 @@ class BotCard extends StatelessWidget {
         ),
         kWidth10,
         Expanded(
-            child: (index == totalindux)
-                ? Text(
-                    text,
-                    style: body1(primaryTextColor),
-                  )
-                : DefaultTextStyle(
-                    style: body1(primaryTextColor),
-                    child: AnimatedTextKit(
-                        repeatForever: false,
-                        totalRepeatCount: 1,
-                        animatedTexts: [TypewriterAnimatedText(text)]))),
+          child: (index == totalindux)
+              ? Text(
+                  text,
+                  style: body1(primaryTextColor),
+                )
+              : DefaultTextStyle(
+                  style: body1(primaryTextColor),
+                  child: AnimatedTextKit(
+                    repeatForever: false,
+                    totalRepeatCount: 1,
+                    animatedTexts: [TypewriterAnimatedText(text)],
+                  ),
+                ),
+        ),
       ],
     );
   }

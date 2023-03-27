@@ -6,8 +6,7 @@ body1(Color color) {
       fontFamily: "inter",
       fontSize: 13,
       textBaseline: TextBaseline.values[1],
-      //   height: 20,
-
+      height: 1.5,
       letterSpacing: -0.2,
       wordSpacing: 1,
       fontWeight: FontWeight.w400);
@@ -42,9 +41,3 @@ heading(Color color) {
       letterSpacing: -0.2,
       fontWeight: FontWeight.w700);
 }
-
-// TextStyle buttonStyle = GoogleFonts.inter(
-//   fontSize: 16,
-//   fontWeight: FontWeight.w500,
-//   color: Colors.white,
-// );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,9 +53,12 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      // floatingActionButton: CircleAvatar(
-
-      // ),
+      floatingActionButton: GestureDetector(
+        onTap: () {},
+        child: const CircleAvatar(
+          child: Icon(Icons.mic),
+        ),
+      ),
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(10.0),
           child: TextFormField(
