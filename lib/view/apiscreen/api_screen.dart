@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_bot_v1/utils/colors.dart';
 import 'package:my_bot_v1/utils/consts.dart';
 import 'package:my_bot_v1/utils/rounts.dart';
@@ -81,6 +82,9 @@ class _ApiScreenState extends State<ApiScreen> {
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: MaterialButton(
                     onPressed: () {
+                      final storage = FlutterSecureStorage();
+                      storage.write(
+                          key: "Token", value: keyControlller.text.trim());
                       homepageRount(context);
                     },
                     color: primaryColor,

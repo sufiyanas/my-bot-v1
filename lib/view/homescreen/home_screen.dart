@@ -53,12 +53,12 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: GestureDetector(
-        onTap: () {},
-        child: const CircleAvatar(
-          child: Icon(Icons.mic),
-        ),
-      ),
+      // floatingActionButton: GestureDetector(
+      //   onTap: () {},
+      //   child: const CircleAvatar(
+      //     child: Icon(Icons.mic),
+      //   ),
+      // ),
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(10.0),
           child: TextFormField(
@@ -94,7 +94,9 @@ class HomeScreen extends StatelessWidget {
                     borderSide: const BorderSide(color: red)),
                 suffixIcon: GestureDetector(
                   onTap: () async {
-                    homeNotifer.addSenderList(textcontroller.text);
+                    (isOnline)
+                        ? homeNotifer.addSenderList(textcontroller.text)
+                        : homeNotifer.changepromt(textcontroller.text, context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 6),
