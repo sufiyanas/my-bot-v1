@@ -5,6 +5,7 @@ import 'package:my_bot_v1/utils/colors.dart';
 import 'package:my_bot_v1/utils/consts.dart';
 import 'package:my_bot_v1/utils/rounts.dart';
 import 'package:my_bot_v1/utils/strings.dart';
+import 'package:my_bot_v1/view/homescreen/home_screen.dart';
 
 class ApiScreen extends StatefulWidget {
   ApiScreen({super.key});
@@ -84,8 +85,13 @@ class _ApiScreenState extends State<ApiScreen> {
                     onPressed: () {
                       final storage = FlutterSecureStorage();
                       storage.write(
-                          key: "Token", value: keyControlller.text.trim());
-                      homepageRount(context);
+                          key: "token", value: keyControlller.text.trim());
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ));
+                      // homepageRount(context);
                     },
                     color: primaryColor,
                     height: 42,

@@ -9,6 +9,7 @@ import 'package:my_bot_v1/view/dallEscreen/dalle_screen.dart';
 import 'package:my_bot_v1/view/homescreen/application/home_notifier.dart';
 import 'package:my_bot_v1/view/homescreen/application/togle_notify.dart';
 import 'package:my_bot_v1/view/homescreen/widgets/togle_bar.dart';
+import 'package:my_bot_v1/view/profilescreen/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,13 +33,35 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text.rich(TextSpan(
                       text: "My ",
-                      style: heading(primaryTextColor),
+                      style: heading(color: primaryTextColor),
                       children: [
-                        TextSpan(text: "Bot", style: heading(primaryColor)),
+                        TextSpan(
+                            text: "Bot", style: heading(color: primaryColor)),
                       ])),
                   const Spacer(),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const ProfileScreen(),
+                            transitionDuration:
+                                const Duration(milliseconds: 100),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              return SlideTransition(
+                                position: Tween<Offset>(
+                                        begin: const Offset(1.0, 0.0),
+                                        end: const Offset(0.0, 0.0))
+                                    .animate(animation),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
                       icon: const Icon(
                         Icons.menu,
                         color: primaryTextColor,

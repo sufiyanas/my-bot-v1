@@ -32,10 +32,10 @@ button(Color color) {
       fontWeight: FontWeight.w600);
 }
 
-heading(Color color) {
+heading({required Color color, double fontsize = 22}) {
   return TextStyle(
       fontFamily: "inter",
-      fontSize: 22,
+      fontSize: fontsize,
       color: color,
       //height: 20,
       letterSpacing: -0.2,

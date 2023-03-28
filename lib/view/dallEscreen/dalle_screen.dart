@@ -55,7 +55,7 @@ class DallEScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
                           color: black,
-                          child: Center(
+                          child: const Center(
                             child: CupertinoActivityIndicator(radius: 15),
                           ),
                         ),
@@ -68,27 +68,28 @@ class DallEScreen extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: (homeNotifer.imageUrl == " ")
-                                ? AssetImage("assets/images/demo_img_dalle.jpg")
+                                ? const AssetImage(
+                                    "assets/images/demo_img_dalle.jpg")
                                 : NetworkImage(homeNotifer.imageUrl)
                                     as ImageProvider,
                           ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      right: 10,
-                      bottom: 10,
-                      child: CircleAvatar(
-                        backgroundColor: inputFieldBackgrount,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.file_download_outlined,
-                            color: secondaryTextColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Positioned(
+                    //   right: 10,
+                    //   bottom: 10,
+                    //   child: CircleAvatar(
+                    //     backgroundColor: inputFieldBackgrount,
+                    //     child: IconButton(
+                    //       onPressed: () {},
+                    //       icon: const Icon(
+                    //         Icons.file_download_outlined,
+                    //         color: secondaryTextColor,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               )
