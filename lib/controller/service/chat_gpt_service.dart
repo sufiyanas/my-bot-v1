@@ -22,9 +22,12 @@ Future<String> generateText(String prompt) async {
 
     return jsonResponse["choices"][0]["text"];
   } else {
-    log("failed");
     var jsonResponse = jsonDecode(response.body);
 
+    if (jsonResponse["error"]["code"] == "invalid_api_key") {
+      storage.deleteAll();
+    }
+    //log(jsonResponse.toString());
     //log(jsonResponse["error"]["message"]);
     return jsonResponse["error"]["message"];
   }

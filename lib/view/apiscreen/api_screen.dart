@@ -46,7 +46,7 @@ class _ApiScreenState extends State<ApiScreen> {
                 Padding(
                     padding: const EdgeInsets.all(7.0),
                     child: TextFormField(
-                      inputFormatters: [LengthLimitingTextInputFormatter(16)],
+                      inputFormatters: [LengthLimitingTextInputFormatter(80)],
                       // autofocus: true,
                       controller: keyControlller,
                       validator: (value) {

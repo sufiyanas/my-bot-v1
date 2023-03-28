@@ -52,11 +52,14 @@ class HomeNotifier extends ChangeNotifier {
 
   //for text capture from the textformfield
   void changepromt(String text, BuildContext context) async {
+    promt = text;
+    notifyListeners();
     final Response response = await Apisample().getimage(textPrompt: text);
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       imageUrl = data["data"][0]["url"];
+      notifyListeners();
       log(imageUrl);
     } else {
       log(response.body);
