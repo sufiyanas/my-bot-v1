@@ -86,7 +86,7 @@ class _ApiScreenState extends State<ApiScreen> {
                       final storage = FlutterSecureStorage();
                       storage.write(
                           key: "token", value: keyControlller.text.trim());
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomeScreen(),

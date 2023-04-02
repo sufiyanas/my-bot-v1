@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +17,7 @@ import 'package:my_bot_v1/view/profilescreen/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,62 +26,67 @@ class HomeScreen extends StatelessWidget {
     final textcontroller = TextEditingController();
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       backgroundColor: black,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Row(
-                children: [
-                  Text.rich(TextSpan(
-                      text: "My ",
-                      style: heading(color: primaryTextColor),
-                      children: [
-                        TextSpan(
-                            text: "Bot", style: heading(color: primaryColor)),
-                      ])),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const ProfileScreen(),
-                            transitionDuration:
-                                const Duration(milliseconds: 100),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              return SlideTransition(
-                                position: Tween<Offset>(
-                                        begin: const Offset(1.0, 0.0),
-                                        end: const Offset(0.0, 0.0))
-                                    .animate(animation),
-                                child: child,
-                              );
-                            },
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.menu,
-                        color: primaryTextColor,
-                      ))
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    children: [
+                      Text.rich(TextSpan(
+                          text: "My ",
+                          style: heading(color: primaryTextColor),
+                          children: [
+                            TextSpan(
+                                text: "Bot",
+                                style: heading(color: primaryColor)),
+                          ])),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        const ProfileScreen(),
+                                transitionDuration:
+                                    const Duration(milliseconds: 100),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  return SlideTransition(
+                                    position: Tween<Offset>(
+                                            begin: const Offset(1.0, 0.0),
+                                            end: const Offset(0.0, 0.0))
+                                        .animate(animation),
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.menu,
+                            color: primaryTextColor,
+                          ))
+                    ],
+                  ),
+                ),
+                ToggleBar(),
+                kHeight18,
+                isOnline ? const ChatGptScreen() : const DallEScreen(),
+              ],
             ),
-            ToggleBar(),
-            kHeight18,
-            Expanded(
-                child: isOnline ? const ChatGptScreen() : const DallEScreen()),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     style: TextStyle(color: Colors.white),
                     inputFormatters: [LengthLimitingTextInputFormatter(80)],

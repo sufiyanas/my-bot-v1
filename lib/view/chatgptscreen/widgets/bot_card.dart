@@ -5,7 +5,7 @@ import 'package:my_bot_v1/utils/consts.dart';
 import 'package:my_bot_v1/utils/strings.dart';
 
 class BotCard extends StatefulWidget {
-  BotCard({
+  const BotCard({
     Key? key,
     required this.text,
     required this.index,

@@ -11,29 +11,27 @@ class ChatGptScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeNotifier>(context);
-    return SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Expanded(
-          child: ListView.builder(
-            itemCount: homeProvider.senderList.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  questionCard(text: homeProvider.senderList[index]),
-                  index == homeProvider.senderList.length - 1 &&
-                          homeProvider.dataLoading
-                      ? BlinkingAnimation()
-                      : BotCard(
-                          text: homeProvider.reciverList[index],
-                          index: index,
-                          totalindux: homeProvider.reciverList.length),
-                  // : BlinkingAnimation()
-                ],
-              );
-            },
-            physics: const BouncingScrollPhysics(),
-          ),
-        ));
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: homeProvider.senderList.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              questionCard(text: homeProvider.senderList[index]),
+              index == homeProvider.senderList.length - 1 &&
+                      homeProvider.dataLoading
+                  ? BlinkingAnimation()
+                  : BotCard(
+                      text: homeProvider.reciverList[index],
+                      index: index,
+                      totalindux: homeProvider.reciverList.length),
+              // : BlinkingAnimation()
+            ],
+          );
+        },
+        physics: const BouncingScrollPhysics(),
+      ),
+    );
   }
 }
