@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
             Tile(
-              imageUrl: "assets/images/profile_1.png",
+              imageUrl: "assets/images/nivass_dummy.jpg",
               name: "Mariyan Nivaas",
               role: "Product Designer ",
               press: () {},

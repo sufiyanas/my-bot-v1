@@ -28,9 +28,13 @@ class DallEScreen extends StatelessWidget {
                   color: secondaryTextColor,
                 ),
                 kWidth5,
-                Text(
-                  homeNotifer.promt,
-                  style: body1(primaryTextColor),
+                Expanded(
+                  child: SizedBox(
+                    child: Text(
+                      homeNotifer.promt,
+                      style: body1(primaryTextColor),
+                    ),
+                  ),
                 ),
               ],
             ),

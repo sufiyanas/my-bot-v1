@@ -22,90 +22,98 @@ class _ApiScreenState extends State<ApiScreen> {
     final mwidth = MediaQuery.of(context).size.width;
     final mheight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: black,
-      body: SafeArea(
-        child: SingleChildScrollView(
+        backgroundColor: black,
+        body: SafeArea(
+            child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 10, right: 10, top: mheight * 0.30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text.rich(TextSpan(
-                      text: "Enter your ",
-                      style: body1(primaryTextColor),
-                      children: [
-                        TextSpan(text: "open.ai ", style: body1(primaryColor)),
-                        TextSpan(
-                            text: "api key in the below field",
-                            style: body1(primaryTextColor)),
-                      ])),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text.rich(TextSpan(
+                  text: "Enter your ",
+                  style: body1(primaryTextColor),
+                  children: [
+                    TextSpan(text: "open.ai ", style: body1(primaryColor)),
+                    TextSpan(
+                        text: "api key in the below field",
+                        style: body1(primaryTextColor)),
+                  ],
+                )),
+              ),
+              kHeight07,
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: TextFormField(
+                  inputFormatters: [LengthLimitingTextInputFormatter(80)],
+                  // autofocus: true,
+                  controller: keyControlller,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your API key";
+                    } else if (value.trim().length < 5) {
+                      return "API key should be at least 5 characters";
+                    } else if (value.contains(' ')) {
+                      return "Spaces are not allowed";
+                    } else {
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                    fillColor: inputFieldBackgrount,
+                    filled: true,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(color: black),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(color: red),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(color: black),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(color: red),
+                    ),
+                    hintText: "Enter API key",
+                    hintStyle: button(secondaryTextColor),
+                    border: InputBorder.none,
+                  ),
                 ),
-                kHeight07,
-                Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: TextFormField(
-                      inputFormatters: [LengthLimitingTextInputFormatter(80)],
-                      // autofocus: true,
-                      controller: keyControlller,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter Employee ID";
-                        } else if (value.contains(' ')) {
-                          return "Spaces are not allowed";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                          fillColor: inputFieldBackgrount,
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: black)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: red)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: black)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: red)),
-                          // hintText: 'Enter API key',
-                          hintText: "Enter API key",
-                          hintStyle: button(secondaryTextColor),
-                          border: InputBorder.none),
-                    )),
-                kHeight08,
-                Padding(
-                  padding: const EdgeInsets.only(left: 5, right: 5),
-                  child: MaterialButton(
-                    onPressed: () {
-                      final storage = FlutterSecureStorage();
+              ),
+              kHeight08,
+              Padding(
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: MaterialButton(
+                  onPressed: () {
+                    if (keyControlller.text.trim().length >= 5 &&
+                        !keyControlller.text.contains(' ')) {
+                      const storage = FlutterSecureStorage();
                       storage.write(
                           key: "token", value: keyControlller.text.trim());
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ));
-                      // homepageRount(context);
-                    },
-                    color: primaryColor,
-                    height: 42,
-                    minWidth: mwidth * 0.94,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Text("Proceed", style: button(primaryTextColor)),
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    }
+                  },
+                  color: primaryColor,
+                  height: 42,
+                  minWidth: mwidth * 0.94,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(7),
                   ),
+                  child: Text("Proceed", style: button(primaryTextColor)),
                 ),
-              ],
-            ),
+              ),
+            ]),
           ),
-        ),
-      ),
-    );
+        )));
   }
 }

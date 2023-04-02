@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     style: TextStyle(color: Colors.white),
-                    inputFormatters: [LengthLimitingTextInputFormatter(80)],
+                    inputFormatters: [LengthLimitingTextInputFormatter(100)],
                     // autofocus: true,
                     controller: textcontroller,
                     onChanged: (value) {
